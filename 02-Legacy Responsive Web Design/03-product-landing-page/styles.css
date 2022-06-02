@@ -1,0 +1,128 @@
+:root {
+    --font-color: black;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    color: var(--font-color);
+}
+header {
+    /* background-color: yellowgreen; */
+    display: flex;
+    position: fixed;
+    align-items: center;
+    top : 10px;
+    left: 20px;
+    width:100%;
+}
+
+#header-img {
+    width: 350px;
+    max-width: 100%;
+    height:max-content;
+}
+/* 
+#nav-bar {
+    background-color: yellowgreen;
+}
+ */
+#nav-bar ul {
+    /* background-color: aquamarine; */
+    display: flex;    
+    width: 35vw;
+}
+
+li {
+    margin: auto;
+    list-style-type: none;
+}
+
+li a {
+    color: var(--font-color);
+    text-decoration: none;
+}
+
+main {
+    position: relative;
+    top:70px;
+}
+
+h1 {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form * {
+    width: 300px;
+    box-sizing: border-box;
+    margin: 0.1rem 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+}
+
+
+.Features {
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.Features .icon {
+    color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 20vw;
+}
+
+.Features .features-memo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 125px;
+    width: 80vw;
+    padding: 5px;
+  }
+
+@media (min-width:900px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .Features {
+        /* position: relative; */
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 30vw;
+    }
+    
+    .Features .icon {
+        display: block;
+        color: brown;
+        margin: 2rem;
+        width: 125px;
+    }
+    
+    .Features .features-memo {
+        display: block;
+        left: 150px;
+        margin-left: 1.5rem;
+   }
+}
+  
