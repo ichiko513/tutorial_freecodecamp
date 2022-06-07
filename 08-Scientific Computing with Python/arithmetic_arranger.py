@@ -1,6 +1,3 @@
-from enum import Flag
-from msilib.schema import Error
-
 
 def arithmetic_arranger(problemslist, display_result=False) -> None:
     if len(problemslist) > 5:
@@ -9,41 +6,48 @@ def arithmetic_arranger(problemslist, display_result=False) -> None:
         return
 
     maxwidth = []
+    result = []
     for problem in problemslist:
-        parts = problem.split()
-        if parts[1] != '+' and parts[1] != '-':
+        item = problem.split()
+        if item[1] != '+' and item[1] != '-':
             # Operator must be '+' or '-'
             print("Error: Operator must be '+' or '-'.")
             return
-        if parts[0].isdecimal() == False or parts[2].isdecimal() == False:
+        if item[0].isdecimal() == False or item[2].isdecimal() == False:
             # must be digits.
             print('Error: Numbers must only contain digits.')
             return
-        if len(parts[0]) > 4 or len(parts[2]) > 4:
+        if len(item[0]) > 4 or len(item[2]) > 4:
             # max of four digits in width
             print('Error: Numbers cannot be more than four digits.')
             return
-        maxwidth.append( max(len(parts[0]),len(parts[2])) )
-    
-    digform = lambda x : '{:>'+str(x)+'}'
+        maxwidth.append( max(len(item[0]),len(item[2])) )
+        result.append( str(eval(problem)) )
+       
+    digform = lambda ope,digw,endspace : ope + '{:>'+str(digw)+'}'+ ('    ' if endspace else '')
 
-    for i in range(3):
+    loopcnt = 4 if display_result == True else 3
+    for i in range(loopcnt):
         for pi, problem in enumerate(problemslist):
-            parts = problem.split()
+            item = problem.split()
+            endspace = pi < len(problemslist) - 1
             if i == 0:
-                print('  ', end='')
-                f = digform(maxwidth[pi])
-                print('{:>4}'.format(parts[0]), end='')
-                if pi < len(problemslist)-1:
-                    print('....', end='')
+                print( digform('  ', maxwidth[pi], endspace).format(item[0]), end='' )
             if i == 1:
-                print('{}{}{}'.format(parts[0],parts[1],parts[2]), end='')
+                print( digform(item[1] + ' ', maxwidth[pi], endspace).format(item[2]), end='' )
+            if i == 2:
+                bar = ''.join( '-' for i in range(maxwidth[pi]) )
+                print( digform('--', maxwidth[pi], endspace).format(bar), end='' )
+            if i == 3:
+                print( digform('', maxwidth[pi]+2, endspace).format(result[pi]), end='' )
         print('')
 
-        # print(' = ', eval(problem))
     pass
 
 if __name__ == '__main__':
+
     arithmetic_arranger(
-        ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
-    pass
+        # ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
+        #  ["9999 + 9999", "0 - 9999", "0 + 0", "0 - 1"])
+        ["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
+
