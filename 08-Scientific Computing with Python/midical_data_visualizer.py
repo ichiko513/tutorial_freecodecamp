@@ -1,3 +1,7 @@
+# seaborn:
+# https://seaborn.pydata.org/generated/seaborn.catplot.html
+# https://github.com/mwaskom/seaborn-data
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
